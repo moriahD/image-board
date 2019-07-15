@@ -1,10 +1,26 @@
 <!doctype html>
 <html>
 <head>
-    <title></title>
+    <title>Imageboard</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <h1>I square pixels</h1>
+    <p>latest images</p>
+    <div class="main">
+        <div class="grid-container">
+            <div v-if="images.length > 0">
+                <div class="card"  v-for='image in images'>
+                    <img :src="image.url">
+                    <h3>{{image.title}}</h3>
+
+                </div>
+            </div>
+        </div>
+        <p v-else>no images!!!</p>
+    </div>
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
+    <script src="/js/script.js" ></script>
 </body>
 </html>

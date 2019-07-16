@@ -19,9 +19,9 @@
             <button @click.prevent.default='handleClick'>submit</button>
         </form>
         <section v-if="images.length > 0" class="grid-container">
-            <div v-for='image in images' class="card">
+            <div v-for='image in images' class="card" >
 
-                <img :src="image.url">
+                <img :src="image.url" :alt="image.title">
                 <div class="wrap_p">
                     <p>{{image.title}}</p>
                 </div>

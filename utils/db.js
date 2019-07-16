@@ -7,7 +7,7 @@ if (process.env.DATABASE_URL) {
 }
 
 exports.getImages = function getImages() {
-    return db.query(`select * from images`);
+    return db.query(`select * from images ORDER BY id DESC`);
 };
 
 exports.addImgurlInfos = function addImgurlInfos(

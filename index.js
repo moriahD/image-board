@@ -3,6 +3,8 @@ const app = express();
 
 app.use(express.static("./public"));
 const db = require("./utils/db");
+const s3 = require("./s3");
+const config = require("./config");
 
 /////////// for stroing uploaded file ///////////
 var multer = require("multer"); //saving files to your harddrive
@@ -27,12 +29,26 @@ var uploader = multer({
 });
 /////////// END: for stroing uploaded file ///////////
 //uploader.single RUNS all the boilerplate code from above. It takes the file it got from formData, changes its name, and stores it in the /upload directory
-app.post("/upload", uploader.single("file"), function(req, res) {
-    // If nothing went wrong the file is already in the uploads directory
-    // uploader.single, when successful, adds a property called "file" to the request object, "file" represents the file that was just uploaded to /upload
+app.post("/upload", uploader.single("file"), s3.upload, function(req, res) {
+    const url = config.s3Url + req.file.filename;
     console.log("req.file: ", req.file);
+    console.log("this is url: ", url);
+    console.log("username: ", req.body.username);
+    db.addImgurlInfos(
+        url,
+        req.body.username,
+        req.body.title,
+        req.body.description
+    )
+        .then(result => {
+            console.log("success in adding data!", result);
+        })
+        .catch(err => {
+            console.log(err);
+        });
     if (req.file) {
         res.json({
+            url,
             success: true
         });
     } else {

@@ -39,6 +39,9 @@
                     .post("/upload", formData)
                     .then(function(resp) {
                         console.log("resp from POST / upload: ", resp);
+                        if (resp.success) {
+                            return self.images.unshift(resp.data);
+                        }
                     })
                     .catch(function(err) {
                         console.log("error in POST / upload: ", err);

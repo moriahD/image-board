@@ -3,38 +3,46 @@ body {
     margin: 2rem auto;
     width: 95%;
 }
-
+form {
+    padding-bottom: 20px;
+}
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 10px;
+    grid-gap: 20px;
     grid-template-rows: auto;
 }
 
 .card {
     position: relative;
-    border: 1px solid #d3d3d3;
+    border: 1px solid #24292e;
     overflow: hidden;
     height: 310px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+.card:hover {
+    box-shadow: #ccc 4px 2px 16px;
+}
 .card img {
     object-fit: cover;
     width: 100%;
-    height: 90%;
+    height: 100%;
     align-items: center;
 }
-.card .wrap_h3 {
+.card .wrap_p {
     position: absolute;
     bottom: 0;
-    background: #ededed;
-    height: 40px;
+    background: #24292e;
+    height: 15%;
     width: 100%;
+    opacity: 0.8;
 }
-.card h3 {
+.card p {
     margin: 0;
     font-size: 15px;
     padding: 5px;
+    text-align: center;
+    color: #fff;
 }

@@ -9,3 +9,16 @@ if (process.env.DATABASE_URL) {
 exports.getImages = function getImages() {
     return db.query(`select * from images`);
 };
+
+exports.addImgurlInfos = function addImgurlInfos(
+    url,
+    username,
+    title,
+    description
+) {
+    return db.query(
+        `INSERT INTO images (url, username, title, description)
+    VALUES ($1, $2, $3, $4) RETURNING *`,
+        [url, username, title, description]
+    );
+};

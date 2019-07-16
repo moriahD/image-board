@@ -6,7 +6,11 @@
     new Vue({
         el: ".main", //element outside of this will not have access to vue
         data: {
-            images: []
+            images: [],
+            title: "",
+            description: "",
+            username: "",
+            file: null
         }, //closing data
         mounted: function() {
             var self = this;
@@ -19,13 +23,30 @@
                 .catch(function(err) {
                     console.log("err in GET /images: ", err);
                 });
-        } //adding mounted function to make ajax request or get API data
+        }, //closes mounted
+        methods: {
+            // every single function that runs in reponse to an event must be defined in methods
+            handleClick: function() {
+                console.log("this", this);
+                // FormData API is necessary for sending FIELS from client to server
+                var formData = new FormData();
+                formData.append("title", this.title);
+                formData.append("username", this.username);
+                formData.append("description", this.description);
+                formData.append("file", this.file);
+
+                axios
+                    .post("/upload", formData)
+                    .then(function(resp) {
+                        console.log("resp from POST / upload: ", resp);
+                    })
+                    .catch(function(err) {
+                        console.log("error in POST / upload: ", err);
+                    });
+            }, //closes handle click function
+            handleChange: function(event) {
+                this.file = event.target.files[0];
+            } // closes handle change function
+        } // closes methods
     }); // closing Vue
-})();
-
-// mounted: runs after HTML has loaded. It's a "lifecycle method"
-// In "mounted" we're going to make ajax requests to get data the user wnats to see the initial moment the page is loaded
-
-// If you're ever in a situation (which you will be a lot!) in which you want to render information the moment the page is rendered... you'll probably want to fetch that data in the "mounted" function!
-
-// PROPERTIES OF "DATA" BECOMES PROPERTIES OF "THIS"
+})(); //closing lifecycle

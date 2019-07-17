@@ -7,9 +7,18 @@
                 something: "vue"
             };
         },
-        props: ["currentImage"],
+        props: ["id"],
         mounted: function() {
-            console.log("id: ", this.id);
+            var id = this.id;
+            console.log("this", this);
+            console.log("id: ", id);
+
+            axios
+                .get("/image/:id")
+                .then(result => {
+                    console.log("result in compoenent", result);
+                })
+                .catch();
         },
         methods: {
             clicked: function() {
@@ -21,7 +30,6 @@
             closebtn: function() {
                 console.log("let's close");
                 this.$emit("close");
-                this.currentImage = false;
             }
         }
     });

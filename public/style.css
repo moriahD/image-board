@@ -75,11 +75,12 @@ h1 span {
 }
 #innermodalbox {
     background: white;
-    position: absolute;
+    position: fixed;
     width: 50%;
     height: 450px;
     top: 17%;
     left: 25%;
+    padding: 10px;
 }
 .closebtn {
     top: 10px;
@@ -87,6 +88,9 @@ h1 span {
     position: absolute;
     font-size: 20px;
     font-weight: bold;
-    color: #f76262;
+    color: #293462;
     cursor: pointer;
+}
+.closebtn:hover {
+    color: #f76262;
 }

@@ -28,6 +28,7 @@ var uploader = multer({
     }
 });
 /////////// END: for stroing uploaded file ///////////
+app.use(require("body-parser").json());
 //uploader.single RUNS all the boilerplate code from above. It takes the file it got from formData, changes its name, and stores it in the /upload directory
 app.post("/upload", uploader.single("file"), s3.upload, function(req, res) {
     const url = config.s3Url + req.file.filename;
@@ -66,15 +67,14 @@ app.get("/images", function(req, res) {
             console.log(err);
         });
 });
-app.get("/image-modal", function(req, res) {
-    db.getInfoById(req.currentImage)
+app.get("/image/:id", function(req, res) {
+    db.getInfoById() //i have to pass id here
         .then(result => {
-            console.log("this is id", result.rows.id);
+            res.json(result);
         })
         .catch(err => {
             console.log("error in getting img info by id", err);
         });
 });
-app.use(require("body-parser").json());
 
 app.listen(8080, () => console.log("Listening!!!"));

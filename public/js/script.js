@@ -11,6 +11,7 @@
             description: "",
             username: "",
             file: null,
+            id: "",
             currentImage: false,
             favoritething: "peanut butter"
         }, //closing data
@@ -49,8 +50,8 @@
             handleChange: function(event) {
                 this.file = event.target.files[0];
             }, // closes handle change function
-            clicked: function() {
-                this.currentImage = true;
+            clicked: function(id) {
+                this.currentImage = id;
             },
             close: function(closingbtn) {
                 this.currentImage = false;

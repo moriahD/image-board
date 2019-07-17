@@ -68,7 +68,7 @@ app.get("/images", function(req, res) {
         });
 });
 app.get("/image/:id", function(req, res) {
-    db.getInfoById() //i have to pass id here
+    db.getInfoById(req.params.id) //i have to pass id here
         .then(result => {
             res.json(result);
         })

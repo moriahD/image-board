@@ -37,9 +37,10 @@
 
             <div id="innermodalbox">
                 <div class="closebtn" @click="closebtn">X</div>
-                <p>Ciao, this is image modal{{something}}</p>
-                <img src=""/>
-                <p>title</p>
+                <p>{{image.title}}</p>
+                <img :src="image.url"/>
+                <p>{{image.description}}<p>
+                <p>uploaded by {{image.username}} at {{image.created_at}}</p>
             </div>
 
 

@@ -4,19 +4,19 @@
         template: "#currentImage", //no el, but specify template, and component should be written in html tag. not string. it should be one wrapped element contains everything else, backtick is not suggeted
         data: function() {
             return {
-                something: "vue"
+                image: []
             };
         },
         props: ["id"],
         mounted: function() {
             var id = this.id;
-            console.log("this", this);
-            console.log("id: ", id);
+            var self = this;
 
             axios
-                .get("/image/:id")
+                .get("/image/" + id)
                 .then(result => {
-                    console.log("result in compoenent", result);
+                    console.log(result);
+                    self.image = result.data.rows[0];
                 })
                 .catch();
         },

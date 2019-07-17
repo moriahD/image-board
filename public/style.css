@@ -76,11 +76,15 @@ h1 span {
 #innermodalbox {
     background: white;
     position: fixed;
-    width: 50%;
+    width: 60%;
     height: 450px;
     top: 17%;
-    left: 25%;
+    left: 20%;
     padding: 10px;
+    overflow-y: auto;
+}
+#innermodalbox img {
+    width: 100%;
 }
 .closebtn {
     top: 10px;

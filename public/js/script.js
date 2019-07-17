@@ -10,7 +10,9 @@
             title: "",
             description: "",
             username: "",
-            file: null
+            file: null,
+            currentImage: false,
+            favoritething: "peanut butter"
         }, //closing data
         mounted: function() {
             var self = this;
@@ -46,7 +48,13 @@
             }, //closes handle click function
             handleChange: function(event) {
                 this.file = event.target.files[0];
-            } // closes handle change function
+            }, // closes handle change function
+            clicked: function() {
+                this.currentImage = true;
+            },
+            close: function(closingbtn) {
+                this.currentImage = false;
+            }
         } // closes methods
     }); // closing Vue
 })(); //closing lifecycle

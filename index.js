@@ -66,5 +66,15 @@ app.get("/images", function(req, res) {
             console.log(err);
         });
 });
+app.get("/image-modal", function(req, res) {
+    db.getInfoById(req.currentImage)
+        .then(result => {
+            console.log("this is id", result.rows.id);
+        })
+        .catch(err => {
+            console.log("error in getting img info by id", err);
+        });
+});
+app.use(require("body-parser").json());
 
 app.listen(8080, () => console.log("Listening!!!"));

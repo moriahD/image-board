@@ -22,3 +22,7 @@ exports.addImgurlInfos = function addImgurlInfos(
         [url, username, title, description]
     );
 };
+
+exports.getInfoById = function getInfoById(id) {
+    return db.query("SELECT * FROM images WHERE id=$1", [id]);
+};

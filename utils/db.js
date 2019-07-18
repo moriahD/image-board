@@ -35,9 +35,16 @@ exports.addCommentInfo = function addCommentInfo(
     comment_text
 ) {
     return db.query(
-        `INSERT INTO comment (image_id, commentername, comment_text)
+        `INSERT INTO comments (image_id, commentername, comment_text)
     VALUES ($1, $2, $3) RETURNING *`,
         [image_id, commentername, comment_text]
+    );
+};
+exports.getCommentsById = function getCommentsById(image_id) {
+    return db.query(
+        `
+        SELECT * FROM comments WHERE image_id=$1`,
+        [image_id]
     );
 };
 

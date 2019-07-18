@@ -1,7 +1,7 @@
 -- comment data table
-DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS comments;
 
-CREATE TABLE comment(
+CREATE TABLE comments(
     id SERIAL PRIMARY KEY,
     image_id INT,
     commentername VARCHAR(255),

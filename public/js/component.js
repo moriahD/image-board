@@ -6,7 +6,9 @@
             return {
                 image: [],
                 commentername: "",
-                comment_text: ""
+                comment_text: "",
+                created_at: "",
+                comments: []
             };
         },
         props: ["id"],
@@ -20,6 +22,14 @@
                     self.image = result.data.rows[0];
                 })
                 .catch();
+
+            axios
+                .get("/getcomments/" + id)
+                .then(result => {
+                    console.log("get comments: ", result);
+                    self.comments = result.data.rows;
+                })
+                .catch(err => console.log(err));
         },
         watch: {
             //it can watch what the function is doing, so paste function runnning inside of mounted to here
@@ -38,13 +48,13 @@
                 this.$emit("submit_comment");
                 console.log("comment this: ", this);
                 axios
-                    .post("/comment", {
+                    .post("/comments", {
                         image_id: this.id,
                         commentername: this.commentername,
                         comment_text: this.comment_text
                     })
                     .then(result => {
-                        console.log("result", result);
+                        console.log("result in submitComment", result);
                     })
                     .catch();
             }

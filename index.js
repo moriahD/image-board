@@ -67,6 +67,7 @@ app.get("/images", function(req, res) {
             console.log(err);
         });
 });
+
 app.get("/image/:id", function(req, res) {
     db.getInfoById(req.params.id) //i have to pass id here
         .then(result => {
@@ -76,7 +77,16 @@ app.get("/image/:id", function(req, res) {
             console.log("error in getting img info by id", err);
         });
 });
-app.post("/comment", function(req, res) {
+app.get("/getcomments/:id", (req, res) => {
+    db.getCommentsById(req.params.id)
+        .then(comments => {
+            res.json(comments);
+        })
+        .catch(err =>
+            console.log("error in db getCommentsById: ", err.message)
+        );
+});
+app.post("/comments", function(req, res) {
     console.log("req.body in comment: ", req.body);
 
     db.addCommentInfo(

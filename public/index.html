@@ -52,11 +52,12 @@
                     </label>
                     <button @click.prevent.default='submitComment'>submit</button>
                 </form>
-                <div class="comment-wrap">
-                    <p class="comment-txt">here should go comment</p>
-                    <p> on </p>
+                <div class="comment-wrap" >
+                    <div class="" v-for='comment in comments' >
+                        <p class="comment-txt">{{comment.comment_text}}</p>
+                        <p>{{comment.commentername}} on {{comment.created_at}} </p>
 
-
+                    </div>
                 </div>
 
 

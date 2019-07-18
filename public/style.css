@@ -36,7 +36,7 @@ h1 span {
 .card img {
     object-fit: cover;
     width: 100%;
-    height: fit-content;
+    height: -webkit-fill-available;
     align-items: center;
 }
 .card .wrap_p {

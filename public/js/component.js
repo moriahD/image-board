@@ -4,7 +4,9 @@
         template: "#currentImage", //no el, but specify template, and component should be written in html tag. not string. it should be one wrapped element contains everything else, backtick is not suggeted
         data: function() {
             return {
-                image: []
+                image: [],
+                commentername: "",
+                comment_text: ""
             };
         },
         props: ["id"],
@@ -15,10 +17,12 @@
             axios
                 .get("/image/" + id)
                 .then(result => {
-                    console.log(result);
                     self.image = result.data.rows[0];
                 })
                 .catch();
+        },
+        watch: {
+            //it can watch what the function is doing, so paste function runnning inside of mounted to here
         },
         methods: {
             clicked: function() {
@@ -28,8 +32,21 @@
                 this.$emit("change");
             },
             closebtn: function() {
-                console.log("let's close");
                 this.$emit("close");
+            },
+            submitComment: function() {
+                this.$emit("submit_comment");
+                console.log("comment this: ", this);
+                axios
+                    .post("/comment", {
+                        image_id: this.id,
+                        commentername: this.commentername,
+                        comment_text: this.comment_text
+                    })
+                    .then(result => {
+                        console.log("result", result);
+                    })
+                    .catch();
             }
         }
     });

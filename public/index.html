@@ -18,12 +18,12 @@
         </form>
         <section v-if="images.length > 0" class="grid-container">
             <div v-for='image in images' class="card" @click="clicked(image.id)">
-
-                <img :src="image.url" :alt="image.title">
-                <div class="wrap_p">
-                    <p>{{image.title}}</p>
-                </div>
-
+                <a :href ="'#' + image.id">
+                    <img :src="image.url" :alt="image.title">
+                    <div class="wrap_p">
+                        <p>{{image.title}}</p>
+                    </div>
+                </a>
             </div>
         </section>
         <p v-else>no images!!!</p>
@@ -33,14 +33,33 @@
 
     <script src="text/x-template" id="currentImage">
         <div id="modal">
-            <div id="bg-modal"></div>
+
 
             <div id="innermodalbox">
-                <div class="closebtn" @click="closebtn">X</div>
+                <div class="closebtn" @click="closebtn">CLOSE</div>
+                <!-- displaying all info of clicked image -->
                 <p>{{image.title}}</p>
                 <img :src="image.url"/>
                 <p>{{image.description}}<p>
                 <p>uploaded by {{image.username}} at {{image.created_at}}</p>
+                <!-- display comment box -->
+                <form>
+                    <label>Comment:
+                        <input v-model='comment_text' type="text" name="comment_text" placeholder="">
+                    </label>
+                    <label>Username:
+                        <input v-model='commentername' type="text" name="commentername" placeholder="commentername">
+                    </label>
+                    <button @click.prevent.default='submitComment'>submit</button>
+                </form>
+                <div class="comment-wrap">
+                    <p class="comment-txt">here should go comment</p>
+                    <p> on </p>
+
+
+                </div>
+
+
             </div>
 
 

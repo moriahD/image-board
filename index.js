@@ -76,5 +76,20 @@ app.get("/image/:id", function(req, res) {
             console.log("error in getting img info by id", err);
         });
 });
+app.post("/comment", function(req, res) {
+    console.log("req.body in comment: ", req.body);
+
+    db.addCommentInfo(
+        req.body.image_id,
+        req.body.commentername,
+        req.body.comment_text
+    )
+        .then(result => {
+            res.json(result);
+        })
+        .catch(err => {
+            console.log("error in addCommentInfo", err);
+        });
+});
 
 app.listen(8080, () => console.log("Listening!!!"));

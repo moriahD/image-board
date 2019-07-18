@@ -10,6 +10,7 @@ exports.getImages = function getImages() {
     return db.query(`select * from images ORDER BY id DESC`);
 };
 
+// inserting image and rest of info when user uploads new image
 exports.addImgurlInfos = function addImgurlInfos(
     url,
     username,
@@ -22,7 +23,29 @@ exports.addImgurlInfos = function addImgurlInfos(
         [url, username, title, description]
     );
 };
-
+// getting all information through id
 exports.getInfoById = function getInfoById(id) {
     return db.query("SELECT * FROM images WHERE id=$1", [id]);
 };
+
+// inserting comment data
+exports.addCommentInfo = function addCommentInfo(
+    image_id,
+    commentername,
+    comment_text
+) {
+    return db.query(
+        `INSERT INTO comment (image_id, commentername, comment_text)
+    VALUES ($1, $2, $3) RETURNING *`,
+        [image_id, commentername, comment_text]
+    );
+};
+
+//subquery
+// SELECT id, (FROM images
+// ORDER BY id ASC
+// LIMIT 1
+// ) AS "lowesId" FROM images
+// WHERE id < 10
+// ORDER BY id DESC
+// LIMIT 20;

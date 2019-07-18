@@ -26,6 +26,9 @@
                 .catch(function(err) {
                     console.log("err in GET /images: ", err);
                 });
+            // addEventListener('hashchange', function(){
+            //  self.currentImage = location.hash.slice(1);
+            // });
         }, //closes mounted
         methods: {
             // every single function that runs in reponse to an event must be defined in methods
@@ -53,9 +56,15 @@
             clicked: function(id) {
                 this.currentImage = id;
             },
-            close: function(closingbtn) {
+            close: function() {
                 this.currentImage = false;
+                location.hash = "";
+                history.replaceState(null, null, " ");
             }
+            // ,
+            // submit_comment: function() {
+            //
+            // }
         } // closes methods
     }); // closing Vue
 })(); //closing lifecycle

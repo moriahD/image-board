@@ -36,7 +36,7 @@ h1 span {
 .card img {
     object-fit: cover;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     align-items: center;
 }
 .card .wrap_p {
@@ -57,44 +57,39 @@ h1 span {
     position: absolute;
     top: 0;
     left: 0;
-    color: red;
+    color: #f76262;
     z-index: 1000;
     width: 100vw;
     height: 100vh;
     margin: 0;
 }
-#bg-modal {
-    background: #000;
-    opacity: 0.7;
-    opacity: 0.5;
+
+#innermodalbox {
+    background: white;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-}
-#innermodalbox {
-    background: white;
-    position: fixed;
-    width: 60%;
-    height: 450px;
-    top: 17%;
-    left: 20%;
     padding: 10px;
     overflow-y: auto;
 }
 #innermodalbox img {
-    width: 100%;
+    width: auto;
 }
 .closebtn {
-    top: 10px;
-    right: 10px;
-    position: absolute;
+    top: 15px;
+    right: 28px;
+    position: fixed;
     font-size: 20px;
     font-weight: bold;
     color: #293462;
     cursor: pointer;
+    border: 1px solid #293462;
+    background: #f2f2f2;
+    padding: 5px 10px;
 }
 .closebtn:hover {
     color: #f76262;
+    border: 1px solid #f76262;
 }

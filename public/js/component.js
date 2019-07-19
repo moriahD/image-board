@@ -15,7 +15,6 @@
         mounted: function() {
             var id = this.id;
             var self = this;
-
             axios
                 .get("/image/" + id)
                 .then(result => {
@@ -32,8 +31,26 @@
                 .catch(err => console.log(err));
         },
         watch: {
-            //it can watch what the function is doing, so paste function runnning inside of mounted to here
+            id: function() {
+                var id = this.id;
+                var self = this;
+                axios
+                    .get("/image/" + this.id)
+                    .then(result => {
+                        self.image = result.data.rows[0];
+                    })
+                    .catch();
+
+                axios
+                    .get("/getcomments/" + id)
+                    .then(result => {
+                        console.log("get comments: ", result);
+                        self.comments = result.data.rows;
+                    })
+                    .catch(err => console.log(err));
+            }
         },
+
         methods: {
             clicked: function() {
                 this.something = this.whatever;

@@ -27,7 +27,8 @@
             </div>
         </section>
         <p v-else>no images!!!</p>
-        <image-modal v-if="currentImage" :id="currentImage" v-model="favoritething" @close="close"></image-modal>
+        <button @click="getMoreImages">Load more images</button>
+        <image-modal v-if="id" :id="id" v-model="favoritething" @close="close"></image-modal>
     </div>
 
 

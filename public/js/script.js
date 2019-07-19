@@ -11,24 +11,25 @@
             description: "",
             username: "",
             file: null,
-            id: "",
+            id: location.hash.slice(1),
             currentImage: false,
             favoritething: "peanut butter"
         }, //closing data
         mounted: function() {
             var self = this;
-
+            console.log("id in mounted", this.id);
             axios
                 .get("/images")
                 .then(function(resp) {
                     self.images = resp.data;
+                    // self.unshift(self.images);
+                    addEventListener("hashchange", function() {
+                        self.id = location.hash.slice(1);
+                    });
                 })
                 .catch(function(err) {
                     console.log("err in GET /images: ", err);
                 });
-            // addEventListener('hashchange', function(){
-            //  self.currentImage = location.hash.slice(1);
-            // });
         }, //closes mounted
         methods: {
             // every single function that runs in reponse to an event must be defined in methods
@@ -60,6 +61,9 @@
                 this.currentImage = false;
                 location.hash = "";
                 history.replaceState(null, null, " ");
+            },
+            getMoreImages: function() {
+                //
             }
             // ,
             // submit_comment: function() {

@@ -48,6 +48,17 @@ exports.getCommentsById = function getCommentsById(image_id) {
     );
 };
 
+exports.getMoreImages = lastId =>
+    db
+        .query(
+            `SELECT * FROM images
+        WHERE id < $1
+        ORDER BY id DESC
+        LIMIT 10`,
+            [lastId]
+        )
+        .then(({ rows }) => rows);
+
 //subquery
 // SELECT id, (FROM images
 // ORDER BY id ASC

@@ -30,7 +30,7 @@ var uploader = multer({
 /////////// END: for stroing uploaded file ///////////
 app.use(require("body-parser").json());
 //uploader.single RUNS all the boilerplate code from above. It takes the file it got from formData, changes its name, and stores it in the /upload directory
-app.post("/upload", uploader.single("file"), s3.upload, function(req, res) {
+app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     const url = config.s3Url + req.file.filename;
     console.log("req.file: ", req.file);
     console.log("this is url: ", url);
@@ -42,21 +42,21 @@ app.post("/upload", uploader.single("file"), s3.upload, function(req, res) {
         req.body.description
     )
         .then(result => {
-            console.log("success in adding data!", result);
+            res.json(result.rows[0]);
         })
         .catch(err => {
             console.log(err);
         });
-    if (req.file) {
-        res.json({
-            url,
-            success: true
-        });
-    } else {
-        res.json({
-            success: false
-        });
-    }
+    // if (req.file) {
+    //     res.json({
+    //         url,
+    //         success: true
+    //     });
+    // } else {
+    //     res.json({
+    //         success: false
+    //     });
+    // }
 });
 app.get("/images", function(req, res) {
     db.getImages()

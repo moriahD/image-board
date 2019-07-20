@@ -16,13 +16,13 @@
             favoritething: "peanut butter",
             showLoadMore: true
         }, //closing data
+
         mounted: function() {
             var self = this;
             axios
                 .get("/images")
                 .then(function(resp) {
                     self.images = resp.data;
-                    // self.unshift(self.images);
                     addEventListener("hashchange", function() {
                         self.id = location.hash.slice(1);
                     });
@@ -41,11 +41,12 @@
                 formData.append("username", this.username);
                 formData.append("description", this.description);
                 formData.append("file", this.file);
-
+                var self = this;
                 axios
                     .post("/upload", formData)
                     .then(function(resp) {
                         console.log("resp from POST / upload: ", resp);
+                        self.images.unshift(resp.data);
                     })
                     .catch(function(err) {
                         console.log("error in POST / upload: ", err);

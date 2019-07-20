@@ -61,11 +61,16 @@ exports.getMoreImages = lastId =>
         .then(({ rows }) => rows);
 
 exports.oldestImageId = function oldestImageId() {
-    return db.query(
-        `SELECT id FROM images
+    return db
+        .query(
+            `SELECT id FROM images
         ORDER BY id ASC
         LIMIT 1;`
-    );
+        )
+        .then()
+        .catch(err => {
+            console.log(err);
+        });
 };
 //subquery
 // SELECT id, (FROM images

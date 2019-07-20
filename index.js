@@ -77,8 +77,8 @@ app.get("/images/oldestId", function(req, res) {
 });
 app.get("/images/:lastImageId", function(req, res) {
     db.getMoreImages(req.params.lastImageId)
-        .then(result => {
-            res.json(result.rows);
+        .then(rows => {
+            res.json(rows);
         })
         .catch();
 });

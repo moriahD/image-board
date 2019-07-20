@@ -64,27 +64,32 @@
                 history.replaceState(null, null, " ");
             },
             getMoreImages: function() {
-                var lastImageId = this.images[this.images.length - 1].id;
-                console.log("lastImage : ", lastImageId);
-                console.log("this", this);
-                var oldestImageId = "";
+                var lastImageDisplayedId = this.images[this.images.length - 1]
+                    .id;
+                // console.log("lastImageDisplayedId : ", lastImageDisplayedId);
+                // console.log("this", this);
+                var oldestImageId = null;
                 axios
                     .get("/images/oldestId")
                     .then(result => {
-                        oldestImageId = result.data.rows[0].id;
+                        oldestImageId = result.data[0].id;
                     })
-                    .catch();
-                axios
-                    .get("/images/" + lastImageId)
-                    .then(resp => {
-                        lastImageId = resp.data[resp.data.length - 1].id;
+                    .then(
+                        axios
+                            .get("/images/" + lastImageDisplayedId)
+                            .then(resp => {
+                                var lastImageLoadedId =
+                                    resp.data[resp.data.length - 1].id;
 
-                        if (lastImageId == oldestImageId) {
-                            this.showLoadMore = false;
-                        }
-                        this.images = this.images.concat(resp.data);
-                    })
+                                if (lastImageLoadedId == oldestImageId) {
+                                    this.showLoadMore = false;
+                                }
+                                this.images = this.images.concat(resp.data);
+                            })
+                            .catch()
+                    )
                     .catch();
+
                 //axios get
             }
         } // closes methods

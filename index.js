@@ -68,6 +68,21 @@ app.get("/images", function(req, res) {
         });
 });
 
+app.get("/images/oldestId", function(req, res) {
+    db.oldestImageId()
+        .then(result => {
+            res.json(result.rows);
+        })
+        .catch();
+});
+app.get("/images/:lastImageId", function(req, res) {
+    db.getMoreImages(req.params.lastImageId)
+        .then(result => {
+            res.json(result.rows);
+        })
+        .catch();
+});
+
 app.get("/image/:id", function(req, res) {
     db.getInfoById(req.params.id) //i have to pass id here
         .then(result => {

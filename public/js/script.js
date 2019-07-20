@@ -13,11 +13,11 @@
             file: null,
             id: location.hash.slice(1),
             currentImage: false,
-            favoritething: "peanut butter"
+            favoritething: "peanut butter",
+            showLoadMore: true
         }, //closing data
         mounted: function() {
             var self = this;
-            console.log("id in mounted", this.id);
             axios
                 .get("/images")
                 .then(function(resp) {
@@ -56,6 +56,7 @@
             }, // closes handle change function
             clicked: function(id) {
                 this.currentImage = id;
+                console.log("id in clicked current img", id);
             },
             close: function() {
                 this.currentImage = false;
@@ -63,12 +64,29 @@
                 history.replaceState(null, null, " ");
             },
             getMoreImages: function() {
-                //
+                var lastImageId = this.images[this.images.length - 1].id;
+                console.log("lastImage : ", lastImageId);
+                console.log("this", this);
+                var oldestImageId = "";
+                axios
+                    .get("/images/oldestId")
+                    .then(result => {
+                        oldestImageId = result.data.rows[0].id;
+                    })
+                    .catch();
+                axios
+                    .get("/images/" + lastImageId)
+                    .then(resp => {
+                        lastImageId = resp.data[resp.data.length - 1].id;
+
+                        if (lastImageId == oldestImageId) {
+                            this.showLoadMore = false;
+                        }
+                        this.images = this.images.concat(resp.data);
+                    })
+                    .catch();
+                //axios get
             }
-            // ,
-            // submit_comment: function() {
-            //
-            // }
         } // closes methods
     }); // closing Vue
 })(); //closing lifecycle

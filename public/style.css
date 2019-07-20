@@ -67,19 +67,32 @@ h1 span {
 #innermodalbox {
     background: white;
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 3%;
+    left: 1.5%;
     bottom: 0;
     right: 0;
-    padding: 10px;
+    padding: 2%;
     overflow-y: auto;
+    width: 93%;
+    height: 89%;
+    box-shadow: 4px 3px 9px #333;
 }
 #innermodalbox img {
     width: auto;
 }
+#bg-modal {
+    background: #000;
+    opacity: 0.7;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
 .closebtn {
-    top: 15px;
-    right: 28px;
+    top: 5%;
+    right: 3%;
     position: fixed;
     font-size: 20px;
     font-weight: bold;
@@ -92,4 +105,7 @@ h1 span {
 .closebtn:hover {
     color: #f76262;
     border: 1px solid #f76262;
+}
+#loadmorebtn {
+    text-align: center;
 }

@@ -78,10 +78,3 @@
         }
     });
 })();
-
-// objecct passed with vue component is just exactly like vue object...
-// but you do not get 'el', idea of component is there is already element. there isn't no pre-exist element.
-// component can also have data but different way from they way you do inside of vue, the data in component runs only once and shared with everything. each instance of component should have own data
-
-///passing data to child////
-// parents know the name of property and child should know what that name is

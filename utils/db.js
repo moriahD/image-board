@@ -1,5 +1,6 @@
 var spicedPg = require("spiced-pg");
 var db;
+const limit = 12;
 if (process.env.DATABASE_URL) {
     db = spicedPg(process.env.DATABASE_URL);
 } else {
@@ -7,7 +8,7 @@ if (process.env.DATABASE_URL) {
 }
 
 exports.getImages = function getImages() {
-    return db.query(`select * from images ORDER BY id DESC`);
+    return db.query(`select * from images ORDER BY id DESC LIMIT ` + limit);
 };
 
 // inserting image and rest of info when user uploads new image
@@ -54,11 +55,18 @@ exports.getMoreImages = lastId =>
             `SELECT * FROM images
         WHERE id < $1
         ORDER BY id DESC
-        LIMIT 10`,
+        LIMIT ` + limit,
             [lastId]
         )
         .then(({ rows }) => rows);
 
+exports.oldestImageId = function oldestImageId() {
+    return db.query(
+        `SELECT id FROM images
+        ORDER BY id ASC
+        LIMIT 1;`
+    );
+};
 //subquery
 // SELECT id, (FROM images
 // ORDER BY id ASC

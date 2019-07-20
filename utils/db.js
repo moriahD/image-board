@@ -26,7 +26,10 @@ exports.addImgurlInfos = function addImgurlInfos(
 };
 // getting all information through id
 exports.getInfoById = function getInfoById(id) {
-    return db.query("SELECT * FROM images WHERE id=$1", [id]);
+    return db.query(
+        "SELECT *, to_char( created_at, 'DD-MON-YYYY HH24:MI:SS') as created_at FROM images WHERE id=$1",
+        [id]
+    );
 };
 
 // inserting comment data
@@ -37,14 +40,14 @@ exports.addCommentInfo = function addCommentInfo(
 ) {
     return db.query(
         `INSERT INTO comments (image_id, commentername, comment_text)
-    VALUES ($1, $2, $3) RETURNING *`,
+    VALUES ($1, $2, $3) RETURNING *, to_char( created_at, 'DD-MON-YYYY HH24:MI:SS') as created_at`,
         [image_id, commentername, comment_text]
     );
 };
 exports.getCommentsById = function getCommentsById(image_id) {
     return db.query(
         `
-        SELECT * FROM comments WHERE image_id=$1`,
+        SELECT *, to_char( created_at, 'DD-MON-YYYY HH24:MI:SS') as created_at FROM comments WHERE image_id=$1`,
         [image_id]
     );
 };

@@ -7,14 +7,14 @@
 
 </head>
 <body>
-    <h1>Let's<span><img src="/images/rice.png"/></span> eat!</h1>
+    <h1>Let's<span><img src="/images/rice.png"/></span> eat !</h1>
     <div class="main">
         <form id="upload_wrap">
-            <input v-model='title' type="text" name="title" placeholder="title">
+            <input v-model='title' type="text" name="title" placeholder="dish name">
             <input v-model='description' type="text" name="description" placeholder="description">
-            <input v-model='username' type="text" name="username" placeholder="username">
-            <input @change='handleChange' type="file" name="file" accept='image/*'>
-            <button @click.prevent.default='handleClick' id="submit_btn">SUBMIT</button>
+            <input v-model='username' type="text" name="username" placeholder="user name">
+            <input @change='handleChange' type="file" name="file" accept='image/*' class="custom-file-input">
+            <button @click.prevent.default='handleClick' class="submit_btn">SUBMIT</button>
         </form>
         <section v-if="images.length > 0" class="grid-container">
             <div v-for='image in images' class="card" @click="clicked(image.id)">
@@ -44,7 +44,7 @@
                 <img :src="image.url"/>
                 <h2>{{image.title}}</h2>
                 <p>{{image.description}}<p>
-                <p>uploaded by {{image.username}} at {{image.created_at}}</p>
+                <p>uploaded by <span class="pink_txt">{{image.username}}</span> at {{image.created_at}}</p>
                 <!-- display comment box -->
                 <form>
                     <label>Comment:
@@ -53,12 +53,14 @@
                     <label>Name:
                         <input v-model='commentername' type="text" name="commentername" >
                     </label>
-                    <button @click.prevent.default='submitComment'>submit</button>
+                    <button @click.prevent.default='submitComment' class="submit_btn">SUBMIT</button>
                 </form>
                 <div class="comment-wrap" >
                     <div class="" v-for='comment in comments' >
-                        <p class="comment-txt">{{comment.comment_text}}</p>
-                        <p>{{comment.commentername}} on {{comment.created_at}} </p>
+                        <div class="innerwrap_comment"><p><span class="pink_txt">{{comment.commentername}}</span> commented:</p>  <p class="comment_txt">"{{comment.comment_text}}"</p>
+                        <p class="created_at"> {{comment.created_at}} </p>
+                        </div>
+
 
                     </div>
                 </div>

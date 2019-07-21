@@ -74,19 +74,44 @@ div.main {
 #upload_wrap {
     text-align: center;
 }
-#upload_wrap input,
 #upload_wrap input[type="text"] {
     width: 15%;
     border: 1px solid #ccc;
     padding: 5px;
     color: #333;
 }
+#upload_wrap input[type="text"]:active {
+    color: #293462;
+}
 #upload_wrap input[type="file" i] {
     border: 0;
 }
-#upload_wrap input[type="file" i] button {
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+    min-width: 110px;
 }
-
+.custom-file-input::before {
+    content: "Upload images";
+    display: inline-block;
+    border: 1px solid #f76262;
+    padding: 5px 8px;
+    -webkit-user-select: none;
+    color: #f76262;
+}
+.custom-file-input:hover::before {
+    border-color: #293462;
+    color: #293462;
+}
+.custom-file-input:active::before {
+    border-color: #293462;
+    color: #293462;
+}
+.submit_btn {
+    background-color: #f76262;
+    border: 0;
+    color: #f2f2f2;
+    padding: 5px 10px;
+}
 #modal {
     position: absolute;
     top: 0;
@@ -130,7 +155,6 @@ div.main {
     top: 5%;
     right: 3%;
     position: fixed;
-    font-size: 20px;
     font-weight: bold;
     color: #293462;
     cursor: pointer;
@@ -153,7 +177,8 @@ div.main {
 }
 #loadmorebtn img {
 }
-#loadmorebtn:hover {
+#loadmorebtn:hover,
+.submit_btn:hover {
     background: #293462;
 }
 #ricebowl {
@@ -161,4 +186,33 @@ div.main {
     height: 30px;
     top: 8px;
     right: 23px;
+}
+#innermodalbox input[type="text"] {
+    width: 15%;
+    border: 1px solid #ccc;
+    padding: 5px;
+    color: #333;
+}
+.comment-wrap {
+    background: #f2f2f2;
+    padding: 15px;
+}
+.comment-wrap p {
+    color: #333;
+}
+.innerwrap_comment {
+    text-align: start;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 12px;
+}
+
+.pink_txt {
+    color: #f76262;
+}
+.comment-wrap .comment_txt {
+    color: #293462;
+}
+.comment-wrap .created_at {
+    text-align: right;
+    font-size: 12px;
 }

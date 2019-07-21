@@ -91,7 +91,7 @@ div.main {
     min-width: 110px;
 }
 .custom-file-input::before {
-    content: "Upload images";
+    content: "Select images";
     display: inline-block;
     border: 1px solid #f76262;
     padding: 5px 8px;
@@ -201,7 +201,7 @@ div.main {
     color: #333;
 }
 .innerwrap_comment {
-    text-align: start;
+    text-align: left;
     border-bottom: 1px solid #ccc;
     margin-bottom: 12px;
 }

@@ -3,16 +3,30 @@ body {
     margin: 2rem auto;
     width: 95%;
     background: #f2f2f2;
+    font-size: 16px;
 }
 form {
     padding-bottom: 20px;
 }
-h1,
+h1 {
+    color: #293462;
+    text-align: center;
+    font-size: 60px;
+    font-family: "Rock Salt", cursive;
+    margin: 0;
+}
+h1 img {
+    height: 60px;
+}
 p {
     color: #293462;
+    margin-top: 0;
 }
 h1 span {
     color: #f76262;
+}
+div.main {
+    text-align: center;
 }
 .grid-container {
     display: grid;
@@ -32,11 +46,15 @@ h1 span {
 }
 .card:hover {
     box-shadow: #ccc 4px 2px 16px;
+    opacity: 0.8;
 }
 .card img {
     object-fit: cover;
-    width: 100%;
-    height: -webkit-fill-available;
+    width: auto;
+    height: 100%;
+    height: -moz-available; /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
     align-items: center;
 }
 .card .wrap_p {
@@ -45,22 +63,36 @@ h1 span {
     background: #333333;
     height: 10%;
     width: 100%;
+    left: 0;
 }
 .card p {
     margin: 0;
-    font-size: 15px;
     padding: 5px;
     text-align: center;
-    color: #fff;
+    color: #f2f2f2;
 }
+#upload_wrap {
+    text-align: center;
+}
+#upload_wrap input,
+#upload_wrap input[type="text"] {
+    width: 15%;
+    border: 1px solid #ccc;
+    padding: 5px;
+    color: #333;
+}
+#upload_wrap input[type="file" i] {
+    border: 0;
+}
+#upload_wrap input[type="file" i] button {
+}
+
 #modal {
     position: absolute;
     top: 0;
     left: 0;
     color: #f76262;
     z-index: 1000;
-    width: 100vw;
-    height: 100vh;
     margin: 0;
 }
 
@@ -74,11 +106,15 @@ h1 span {
     padding: 2%;
     overflow-y: auto;
     width: 93%;
-    height: 89%;
+    height: 86%;
     box-shadow: 4px 3px 9px #333;
 }
 #innermodalbox img {
     width: auto;
+}
+#innermodalbox h2 {
+    font-size: 20px;
+    color: #293462;
 }
 #bg-modal {
     background: #000;
@@ -107,5 +143,22 @@ h1 span {
     border: 1px solid #f76262;
 }
 #loadmorebtn {
-    text-align: center;
+    margin: 20px 0;
+    padding: 15px 62px 15px 30px;
+    background: #f76262;
+    border: 0;
+    font-size: 16px;
+    color: #f2f2f2;
+    position: relative;
+}
+#loadmorebtn img {
+}
+#loadmorebtn:hover {
+    background: #293462;
+}
+#ricebowl {
+    position: absolute;
+    height: 30px;
+    top: 8px;
+    right: 23px;
 }

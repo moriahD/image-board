@@ -72,7 +72,7 @@
                     })
                     .then(result => {
                         console.log("result in submitComment", result);
-                        this.comments.unshift(result.data.rows[0]);
+                        return this.comments.unshift(result.data.rows[0]);
                     })
                     .catch();
             }
